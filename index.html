@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>ボイスアラート</title>
+        <style>
+            html {
+                font-size: 62.5%;
+            }
+
+            body {
+                font-size: 1.6rem;
+                color: red;
+                margin: 0;
+                padding: 0;
+            }
+
+
+            .wrapper {
+                width: 100vw;
+                height: 100vh;
+                background-color: aqua;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background: url("background.jpg") center center no-repeat;
+                background-size: cover;
+            }
+
+            .container {
+                width: 50vw;
+                text-align: center;
+                padding: 40px 20px;
+                border-radius: 15px;
+                backdrop-filter: blur(100px);
+                box-shadow: 4px 4px 13px 5px rgba(0, 0, 0, 0.25);
+            }
+
+            @media only screen and (max-width: 700px) {
+                .container {
+                    width: 70vw;
+                }
+            }
+
+            .btn {
+                display: flex;
+                justify-content: space-around;
+            }
+
+            button {
+                color: #333;
+                background-color: yellow;
+                border-radius: 10%;
+                padding: 10px;
+                font-weight: bold;
+                width: 100px;
+                height: 80px;
+                cursor: pointer;
+            }
+        </style>
+
+        <script>
+            function playSound() {
+                // [ID:sound-file]の音声ファイルを読み込む
+                let soundFile = document.getElementById("sound-file");
+
+                // 再生済みの場合は、一度停止して巻き戻す。
+                if (soundFile.currentTime > 0) {
+                    soundFile.pause();
+                    soundFile.currentTime = 0;
+                }
+
+                // [ID:sound-file]の音声ファイルを再生[play()]する
+                soundFile.play();
+            }
+        </script>
+    </head>
+
+    <body>
+        <div class="wrapper">
+            <div class="container">
+                <h1>ボイスアラート</h1>
+
+                <div class="btn">
+                    <button onclick="playSound()">音を鳴らす</button>
+                    <audio src="kisei.wav" type="audio/wav" id="sound-file" preload="auto" loop="true"></audio>
+                    <button onclick="location.reload();">音を止める</button>
+                </div>
+            </div>
+        </div>
+    </body>
+
+</html>
